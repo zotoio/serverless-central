@@ -1,0 +1,32 @@
+{
+    "extends": [
+        "tslint:recommended",
+        "tslint-config-prettier"
+    ],
+    "rulesDirectory": [
+        "tslint-plugin-prettier"
+    ],
+    "rules": {
+        "prettier": true,
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
+        "object-literal-sort-keys": false,
+        "no-string-literal": false,
+        "no-trailing-whitespace": false,
+        "no-console": false,
+        "no-duplicate-imports": true,
+        "variable-name": [
+            "check-format",
+            "allow-leading-underscore"
+        ],
+        "ordered-imports": false,
+        "max-classes-per-file": [
+            true,
+            15
+        ],
+        "no-var-requires": false,
+        "cyclomatic-complexity": true
+    }
+}

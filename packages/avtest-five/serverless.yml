@@ -1,4 +1,4 @@
-service: sls-dynamodb
+service: avtest-five
 
 plugins:
   - serverless-dotenv-plugin
@@ -11,8 +11,8 @@ provider:
   memorySize: 2048 # optional, in MB, default is 1024
   timeout: 30 # optional, in seconds, default is 6
 
-  stage: ${env:SLS_AWS_STAGE}
-  region: ${env:SLS_AWS_REGION}
+  stage: "dev" # ${env:SLS_AWS_STAGE}
+  region: "ap-southeast-2" # ${env:SLS_AWS_REGION}
 
   environment:
       PLACE: "holder"
@@ -22,7 +22,7 @@ provider:
       Action:
         - dynamodb:UpdateItem
       Resource:
-        Fn::GetAtt: [ slsData, Arn ]
+        Fn::GetAtt: [ slsDBFour, Arn ]
 
 package:
   individually: true
@@ -30,11 +30,11 @@ package:
     - ".*/**"
 
 functions:
-  sls-dynamodb:
+  avtest-five:
     handler: build/index.handler
     environment:
-      slsData:
-        Ref: slsData
+      slsDBFour:
+        Ref: slsDBFour
 
     package:
       include:
@@ -42,15 +42,15 @@ functions:
 
     events:
       - http:
-          path: sls-dynamodb
+          path: avtest-five
           method: get
 
 resources:
   Resources:
-    slsData:
+    slsDBFour:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: slsData
+        TableName: slsDBFour
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S

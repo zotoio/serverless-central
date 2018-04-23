@@ -1,6 +1,7 @@
 'use strict';
 
 import { Handler, Context, Callback } from 'aws-lambda';
+import * as AWS from 'aws-sdk';
 
 interface HelloResponse {
     statusCode: number;
@@ -8,6 +9,8 @@ interface HelloResponse {
 }
 
 const handler: Handler = (event: any, context: Context, callback: Callback) => {
+    AWS.config.update({ region: process.env.GTM_AWS_REGION });
+    console.log('here');
     const response: HelloResponse = {
         statusCode: 200,
         body: JSON.stringify(event)
@@ -16,4 +19,4 @@ const handler: Handler = (event: any, context: Context, callback: Callback) => {
     callback(undefined, response);
 };
 
-export { handler }
+export { handler };
