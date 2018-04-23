@@ -1,0 +1,71 @@
+service: sls-dynamodb
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 2048 # optional, in MB, default is 1024
+  timeout: 30 # optional, in seconds, default is 6
+
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
+
+  environment:
+      PLACE: "holder"
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+      Resource:
+        Fn::GetAtt: [ slsData, Arn ]
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions:
+  sls-dynamodb:
+    handler: build/index.handler
+    environment:
+      slsData:
+        Ref: slsData
+
+    package:
+      include:
+        - build/**
+
+    events:
+      - http:
+          path: sls-dynamodb
+          method: get
+
+resources:
+  Resources:
+    slsData:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: slsData
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+        StreamSpecification:
+          StreamViewType: NEW_IMAGE
+
+custom:
+  dotenv:
+    path: .env
+
+  webpack:
+    webpackConfig: '../../webpack.config.js'
