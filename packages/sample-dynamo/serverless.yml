@@ -1,7 +1,6 @@
 service: sample-dynamo
 
 plugins:
-  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
 
@@ -11,11 +10,12 @@ provider:
   memorySize: 2048 # optional, in MB, default is 1024
   timeout: 30 # optional, in seconds, default is 6
 
-  stage: "dev" # ${env:SLS_AWS_STAGE}
-  region: "ap-southeast-2" # ${env:SLS_AWS_REGION}
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
 
   environment:
       PLACE: "holder"
+      avtest: ${env:avtest}
 
   iamRoleStatements:
     - Effect: Allow
