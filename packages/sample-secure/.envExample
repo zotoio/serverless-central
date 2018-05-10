@@ -1,0 +1,2 @@
+# function specific env vars override and extend shared .env
+SLS_AUTHORIZER_ARN=arn:aws:lambda:<region>:<your-account>:function:sample-authorizer-dev-sample-authorizer

@@ -1,2 +1,3 @@
 SLS_AWS_STAGE=dev
 SLS_AWS_REGION=ap-southeast-2
+SLS_CUSTOM_DOMAIN=faas.net.au

@@ -1,28 +1,22 @@
 service: sample-default
 
 plugins:
-  - serverless-dotenv-plugin
-  - serverless-webpack
   - serverless-offline
+  - serverless-webpack
+  - serverless-offline-localstack
+  - serverless-domain-manager
 
 provider:
   name: aws
   runtime: nodejs8.10
-  memorySize: 2048 # optional, in MB, default is 1024
-  timeout: 30 # optional, in seconds, default is 6
+  memorySize: 1024 # optional, in MB, default is 1024
+  timeout: 6 # optional, in seconds, default is 6
 
-  stage: "dev" # ${env:SLS_AWS_STAGE}
-  region: "ap-southeast-2" # ${env:SLS_AWS_REGION}
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
 
   environment:
       PLACE: "holder"
-
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:UpdateItem
-      Resource:
-        Fn::GetAtt: [ slsSampleDefault, Arn ]
 
 package:
   individually: true
@@ -30,11 +24,8 @@ package:
     - ".*/**"
 
 functions:
-  sample-default:
+  echo:
     handler: build/index.handler
-    environment:
-      slsSampleDefault:
-        Ref: slsSampleDefault
 
     package:
       include:
@@ -42,30 +33,35 @@ functions:
 
     events:
       - http:
-          path: sample-default
+          path: echo
           method: get
 
-resources:
-  Resources:
-    slsSampleDefault:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: slsSampleDefault
-        AttributeDefinitions:
-          - AttributeName: id
-            AttributeType: S
-        KeySchema:
-          - AttributeName: id
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
-        StreamSpecification:
-          StreamViewType: NEW_IMAGE
-
 custom:
-  dotenv:
-    path: .env
-
   webpack:
     webpackConfig: '../../webpack.config.js'
+
+  serverlessOfflineLocalstack:
+    stages:
+      - local
+    endpointFile: serverlessOfflineLocalstack.json
+
+  domains:
+    prod: ${env:SLS_CUSTOM_DOMAIN}
+    sit: sit.${env:SLS_CUSTOM_DOMAIN}
+    dev: dev.${env:SLS_CUSTOM_DOMAIN}
+    local: ''
+
+  dnsEnabled:
+    prod: true
+    sit: true
+    dev: true
+    local: false
+
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    certificateName: ${env:SLS_CUSTOM_DOMAIN}
+    basePath: ${self:service}
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: regional
+    enabled: ${self:custom.dnsEnabled.${self:provider.stage}}

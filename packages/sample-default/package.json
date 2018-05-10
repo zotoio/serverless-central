@@ -12,13 +12,18 @@
         "prebuild": "yarn run clean",
         "predev": "yarn run clean",
         "test": "jest -c ../../jest.json",
-        "sls-deploy": "yarn run build && ../../node_modules/serverless/bin/serverless deploy -v"
+        "sls-deploy":
+            "yarn run build && node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless deploy -v"
     },
     "devDependencies": {
         "faker": "^4.1.0",
         "jest": "^21.2.1",
         "prettier": "^1.12.1",
         "rimraf": "^2.6.2",
+        "serverless-domain-manager": "^2.3.6",
+        "serverless-localstack": "^0.2.3",
+        "serverless-offline": "^3.20.3",
+        "serverless-offline-localstack": "^0.0.3",
         "ts-jest": "^21.1.3",
         "tslint-plugin-prettier": "^1.3.0",
         "typescript": "^2.5.3"

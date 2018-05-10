@@ -9,7 +9,6 @@ interface Response {
 }
 
 const handler: Handler = async (event: any, context: Context, callback: Callback) => {
-    AWS.config.update({ region: process.env.SLS_AWS_REGION });
 
     const id = event.pathParameters.id;
     console.log(`processing request for id: ${id}`);
@@ -26,7 +25,7 @@ const handler: Handler = async (event: any, context: Context, callback: Callback
     };
 
     const putParams = {
-        TableName: 'slsSampleDynamo',
+        TableName: 'slsSampleDynamo3',
         Item: {
             id: event.requestContext.requestId,
             data: event.headers
@@ -46,7 +45,7 @@ const handler: Handler = async (event: any, context: Context, callback: Callback
         );
 
     const queryParams = {
-        TableName: 'slsSampleDynamo',
+        TableName: 'slsSampleDynamo3',
         KeyConditionExpression: '#id = :id',
         ExpressionAttributeNames: {
             '#id': 'id'
