@@ -14,6 +14,8 @@
         "test": "jest -c ../../jest.json",
         "sls-deploy":
             "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless deploy -v",
+        "sls-offline":
+            "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless offline -v",
         "sls-remove":
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless remove -v",
         "sls-remove-alias":
