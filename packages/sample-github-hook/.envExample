@@ -1,0 +1,2 @@
+# function specific env vars override and extend shared .env
+LOCAL_VAR=sample

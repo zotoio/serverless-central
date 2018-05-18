@@ -1,0 +1,49 @@
+service: sample-localstack
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-localstack
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 1024 # optional, in MB, default is 1024
+  timeout: 6 # optional, in seconds, default is 6
+
+  stage: "local"
+  region: "us-east-1"
+
+  environment:
+      PLACE: "holder"
+
+
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions:
+  sample-localstack:
+    handler: build/index.handler
+    environment:
+
+    package:
+      include:
+        - build/**
+
+    events:
+      - http:
+          path: sample-localstack
+          method: get
+
+custom:
+  webpack:
+    webpackConfig: '../../webpack.config.js'
+
+  localstack:
+    debug: true
+    stages:
+      - local
+    endpointFile: ../../serverlessOfflineLocalstack.json

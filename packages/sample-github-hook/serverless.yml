@@ -1,8 +1,8 @@
-service: sample-default
+service: sample-github-hook
 
 plugins:
-  - serverless-offline
   - serverless-webpack
+  - serverless-offline
   - serverless-domain-manager
 
 provider:
@@ -23,8 +23,9 @@ package:
     - ".*/**"
 
 functions:
-  echo:
+  sample-github-hook:
     handler: build/index.handler
+    environment:
 
     package:
       include:
@@ -32,8 +33,9 @@ functions:
 
     events:
       - http:
-          path: echo
-          method: get
+          path: hook
+          method: post
+
 
 custom:
   webpack:
@@ -59,3 +61,4 @@ custom:
     createRoute53Record: true
     endpointType: regional
     enabled: ${self:custom.dnsEnabled.${self:provider.stage}}
+
