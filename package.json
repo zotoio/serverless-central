@@ -17,6 +17,7 @@
         "prettier": "^1.12.1",
         "semantic-release": "^15.0.0",
         "serverless": "^1.26.1",
+        "serverless-aws-alias": "^1.7.1",
         "serverless-domain-manager": "^2.3.6",
         "serverless-dotenv-plugin": "^1.1.2",
         "serverless-localstack": "^0.2.3",

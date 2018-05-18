@@ -12,4 +12,4 @@ if (localConfig.error) {
     throw localConfig.error
 }
 
-console.log(json.plain(_.extend(sharedConfig.parsed, localConfig.parsed)));
+//console.log(json.plain(_.extend(sharedConfig.parsed, localConfig.parsed)));
