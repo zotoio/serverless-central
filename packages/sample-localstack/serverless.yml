@@ -3,6 +3,7 @@ service: sample-localstack
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-aws-documentation
   - serverless-localstack
 
 provider:

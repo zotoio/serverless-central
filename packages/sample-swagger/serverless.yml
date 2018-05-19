@@ -1,0 +1,81 @@
+service: sample-swagger
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-aws-documentation
+
+
+
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 1024 # optional, in MB, default is 1024
+  timeout: 6 # optional, in seconds, default is 6
+
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
+
+  environment:
+      PLACE: "holder"
+
+
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions:
+  sample-swagger:
+    handler: build/index.handler
+    environment:
+
+    package:
+      include:
+        - build/**
+
+    events:
+      - http:
+          path: sample-swagger
+          method: get
+
+
+
+custom:
+  webpack:
+    webpackConfig: '../../webpack.config.js'
+
+  documentation:
+      info:
+        version: "2" # see note above about this being ignored
+        title: "Name of your API" # see note above about this being ignored
+        description: "This is the best API ever"
+        termsOfService: "http://www.example.com/terms-of-service"
+        contact:
+          name: "John Smith"
+          url: "http://www.example.com/me"
+          email: "js@example.com"
+        license:
+          name: "Licensing"
+          url: "http://www.example.com/licensing"
+      tags:
+        -
+          name: "Data Creation"
+          description: "Services to create things"
+        -
+          name: "Some other tag"
+          description: "A tag for other things"
+      authorizers:
+        -
+          name: "MyCustomAuthorizer"
+          description: "This is an error"
+      resources:
+        -
+          path: "some/path"
+          description: "This is the description for some/path"
+        -
+          path: "some/other/path"
+          description: "This is the description for some/other/path"
+

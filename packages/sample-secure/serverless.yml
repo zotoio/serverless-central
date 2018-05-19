@@ -3,6 +3,7 @@ service: sample-secure
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-aws-documentation
 
 provider:
   name: aws

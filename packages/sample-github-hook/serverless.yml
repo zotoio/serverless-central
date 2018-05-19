@@ -3,6 +3,7 @@ service: sample-github-hook
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-aws-documentation
   - serverless-domain-manager
 
 provider:

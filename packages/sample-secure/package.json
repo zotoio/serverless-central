@@ -22,13 +22,5 @@
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless alias remove -v",
         "sls-logs":
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless logs -v -t"
-    },
-    "devDependencies": {
-        "faker": "^4.1.0",
-        "jest": "^21.2.1",
-        "prettier": "^1.12.1",
-        "rimraf": "^2.6.2",
-        "ts-jest": "^21.1.3",
-        "typescript": "^2.5.3"
     }
 }

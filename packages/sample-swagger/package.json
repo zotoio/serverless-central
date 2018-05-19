@@ -1,0 +1,21 @@
+{
+    "name": "sample-swagger",
+    "version": "0.0.1",
+    "main": "build/index.js",
+    "types": "build/index.d.js",
+    "license": "MIT",
+    "scripts": {
+        "build": "yarn run lint && tsc -p ./tsconfig.json",
+        "lint": "../../node_modules/tslint/bin/tslint --fix src/**/*.ts",
+        "clean": "rimraf ./build",
+        "dev": "tsc -p ./tsconfig.json -w",
+        "prebuild": "yarn run clean",
+        "predev": "yarn run clean",
+        "test": "jest -c ../../jest.json",
+        "sls-deploy": "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless deploy -v",
+        "sls-offline": "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless offline -v",
+        "sls-remove": "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless remove -v",
+        "sls-remove-alias": "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless alias remove -v",
+        "sls-logs": "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless logs -v -t"
+    }
+}
