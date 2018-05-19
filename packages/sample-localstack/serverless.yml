@@ -1,6 +1,7 @@
 service: sample-localstack
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-webpack
   - serverless-offline
   - serverless-aws-documentation
@@ -27,12 +28,12 @@ package:
 
 functions:
   sample-localstack:
-    handler: build/index.handler
+    handler: src/index.handler
     environment:
 
     package:
       include:
-        - build/**
+        - src/**
 
     events:
       - http:
@@ -41,7 +42,7 @@ functions:
 
 custom:
   webpack:
-    webpackConfig: '../../webpack.config.js'
+    webpackConfig: '../../../webpack.config.js'
 
   localstack:
     debug: true

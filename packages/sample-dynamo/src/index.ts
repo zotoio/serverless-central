@@ -9,7 +9,6 @@ interface Response {
 }
 
 const handler: Handler = async (event: any, context: Context, callback: Callback) => {
-
     const id = event.pathParameters.id;
     console.log(`processing request for id: ${id}`);
 
@@ -25,7 +24,7 @@ const handler: Handler = async (event: any, context: Context, callback: Callback
     };
 
     const putParams = {
-        TableName: 'slsSampleDynamo3',
+        TableName: 'slsSampleDynamo',
         Item: {
             id: event.requestContext.requestId,
             data: event.headers
@@ -45,7 +44,7 @@ const handler: Handler = async (event: any, context: Context, callback: Callback
         );
 
     const queryParams = {
-        TableName: 'slsSampleDynamo3',
+        TableName: 'slsSampleDynamo',
         KeyConditionExpression: '#id = :id',
         ExpressionAttributeNames: {
             '#id': 'id'

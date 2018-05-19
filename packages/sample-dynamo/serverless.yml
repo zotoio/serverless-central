@@ -1,6 +1,7 @@
 service: sample-dynamo
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-webpack
   - serverless-offline
 
@@ -33,14 +34,14 @@ package:
 
 functions:
   sample-dynamo:
-    handler: build/index.handler
+    handler: src/index.handler
     environment:
       slsSampleDynamo:
         Ref: slsSampleDynamo
 
     package:
       include:
-        - build/**
+        - src/**
 
     events:
       - http:
@@ -67,4 +68,4 @@ resources:
 
 custom:
   webpack:
-    webpackConfig: '../../webpack.config.js'
+    webpackConfig: '../../../webpack.config.js'

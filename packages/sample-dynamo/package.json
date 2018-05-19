@@ -5,10 +5,10 @@
     "types": "build/index.d.js",
     "license": "MIT",
     "scripts": {
-        "build": "yarn run lint && yarn run test && tsc -p ./tsconfig.json",
+        "build": "yarn run lint && yarn run test",
         "lint": "../../node_modules/tslint/bin/tslint --fix src/**/*.ts",
-        "clean": "rimraf ./build",
-        "dev": "tsc -p ./tsconfig.json -w",
+        "clean": "rimraf ./.build",
+        "dev": "yarn run sls-offline",
         "prebuild": "yarn run clean",
         "predev": "yarn run clean",
         "test": "jest -c ../../jest.json",

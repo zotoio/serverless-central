@@ -1,6 +1,7 @@
 service: sample-github-hook
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-webpack
   - serverless-offline
   - serverless-aws-documentation
@@ -25,12 +26,12 @@ package:
 
 functions:
   sample-github-hook:
-    handler: build/index.handler
+    handler: src/index.handler
     environment:
 
     package:
       include:
-        - build/**
+        - src/**
 
     events:
       - http:
@@ -40,7 +41,7 @@ functions:
 
 custom:
   webpack:
-    webpackConfig: '../../webpack.config.js'
+    webpackConfig: '../../../webpack.config.js'
 
   domains:
     prod: ${env:SLS_CUSTOM_DOMAIN}

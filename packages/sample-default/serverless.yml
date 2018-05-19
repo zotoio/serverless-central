@@ -1,8 +1,9 @@
 service: sample-default
 
 plugins:
-  - serverless-offline
+  - serverless-plugin-typescript
   - serverless-webpack
+  - serverless-offline
   - serverless-domain-manager
   - serverless-aws-documentation
 
@@ -25,11 +26,11 @@ package:
 
 functions:
   echo:
-    handler: build/index.handler
+    handler: src/index.handler
 
     package:
       include:
-        - build/**
+        - src/**
 
     events:
       - http:
@@ -38,7 +39,7 @@ functions:
 
 custom:
   webpack:
-    webpackConfig: '../../webpack.config.js'
+    webpackConfig: '../../../webpack.config.js'
 
   domains:
     prod: ${env:SLS_CUSTOM_DOMAIN}

@@ -1,6 +1,7 @@
 service: sample-secure
 
 plugins:
+  - serverless-plugin-typescript
   - serverless-webpack
   - serverless-offline
   - serverless-aws-documentation
@@ -21,11 +22,11 @@ package:
 
 functions:
   sample-secure:
-    handler: build/index.handler
+    handler: src/index.handler
 
     package:
       include:
-        - build/**
+        - src/**
 
     events:
       - http:
@@ -40,4 +41,4 @@ custom:
     path: .env
 
   webpack:
-    webpackConfig: '../../webpack.config.js'
+    webpackConfig: '../../../webpack.config.js'
