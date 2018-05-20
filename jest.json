@@ -14,7 +14,7 @@
     ],
     "coverageDirectory": "<rootDir>/output/reports",
     "collectCoverageFrom": [
-        "src/**/*.ts",
+        "**/src/**/*.ts",
         "!src/**/*.spec.ts",
         "!src/**/*.test.ts",
         "!src/**/*.d.ts"

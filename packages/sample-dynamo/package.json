@@ -11,7 +11,7 @@
         "dev": "yarn run sls-offline",
         "prebuild": "yarn run clean",
         "predev": "yarn run clean",
-        "test": "jest -c ../../jest.json",
+        "test": "jest -c ../../jest.json --coverage",
         "sls-deploy":
             "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless deploy -v",
         "sls-offline":
