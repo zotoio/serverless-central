@@ -1,0 +1,54 @@
+service: sample-gcf
+
+plugins:
+  - serverless-google-cloudfunctions
+  - serverless-plugin-typescript
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: google
+  runtime: nodejs
+  project: ${env:SLS_GGL_API_PROJECT_ID}
+  # the path to the credentials file needs to be absolute
+  credentials: ${env:SLS_GGL_CREDS_FILE}
+
+package:
+  exclude:
+    - node_modules/**
+
+functions:
+  sample-gcf:
+    handler: sample-gcf
+
+    package:
+      include:
+        - '**/src'
+
+    events:
+      - http: sample-gcf
+
+  # NOTE: the following uses an "event" event (pubSub event in this case).
+  # Please create the corresponding resources in the Google Cloud
+  # before deploying this service through Serverless
+
+  #second:
+  #  handler: event
+  #  events:
+  #    - event:
+  #        eventType: providers/cloud.pubsub/eventTypes/topic.publish
+  #        resource: projects/*/topics/my-topic
+
+# you can define resources, templates etc. the same way you would in a
+# Google Cloud deployment configuration
+#resources:
+#  resources:
+#    - type: storage.v1.bucket
+#      name: my-serverless-service-bucket
+#  imports:
+#    - path: my_template.jinja
+
+custom:
+  webpack:
+    webpackConfig: '../webpack.config.js'
+

@@ -1,8 +1,8 @@
 {
-    "name": "sample-default",
+    "name": "sample-google",
     "version": "0.0.1",
-    "main": "build/index.js",
-    "types": "build/index.d.js",
+    "main": "src/index.js",
+    "types": "src/index.d.js",
     "license": "MIT",
     "scripts": {
         "build": "yarn run lint && yarn run test",
@@ -13,7 +13,7 @@
         "predev": "yarn run clean",
         "test": "jest -c ../../jest.json --coverage",
         "sls-deploy":
-            "yarn run build && node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless deploy -v",
+            "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless deploy -v",
         "sls-offline":
             "yarn run build && node --require ../../dotenv.js ../../node_modules/serverless/bin/serverless offline -v",
         "sls-remove":

@@ -21,6 +21,7 @@
         "serverless-aws-documentation": "^1.1.0",
         "serverless-domain-manager": "^2.3.6",
         "serverless-dotenv-plugin": "^1.1.2",
+        "serverless-google-cloudfunctions": "^1.1.1",
         "serverless-localstack": "^0.2.3",
         "serverless-offline": "^3.20.3",
         "serverless-plugin-typescript": "^1.1.5",
