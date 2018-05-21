@@ -21,6 +21,12 @@
         "sls-remove-alias":
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless alias remove -v",
         "sls-logs":
-            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless logs -v -t"
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless logs -v -t",
+        "sls-dynamodb-install":
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb install",
+        "sls-dynamodb-start":
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb start --migrate",
+        "sls-dynamodb-remove":
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb remove"
     }
 }

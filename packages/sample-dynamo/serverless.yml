@@ -3,6 +3,7 @@ service: sample-dynamo
 plugins:
   - serverless-plugin-typescript
   - serverless-webpack
+  - serverless-dynamodb-local
   - serverless-offline
 
 provider:
@@ -69,3 +70,13 @@ resources:
 custom:
   webpack:
     webpackConfig: '../../../webpack.config.js'
+
+  dynamodb:
+    start:
+      seed: true
+
+    seed:
+      testdata:
+        sources:
+          - table: slsSampleDynamo
+            sources: [./slsSampleDynamo.json]
