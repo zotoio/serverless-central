@@ -26,7 +26,7 @@ This means that unencrypted are never sent over the wire, nor visible in the aws
 ## decrypting environment variables
 Locally, you can use `yarn sls-decrypt <varName>`
 
-Within your lambda code, a sample helper class `KmsUtils.ts` is available in this repo.  It should be instantiated outside of the handler function.
+Within your lambda code you need to use aws apis to decrypt the env vars at runtime.  A sample helper class `KmsUtils.ts` is available in this repo.  It should be instantiated outside of the handler function.
 
 ```
 import { KmsUtils } from './KmsUtils';
@@ -38,7 +38,7 @@ This class attempts to decrypt and cache any env vars prefixed with `SLS_CRYPT_*
 ```
 const dbPass = await kmsUtils.decrypt(process.env.SLS_CRYPT_DB_PASS);
 ```
-You can use `yarn sls-logs -f sample-lambda` to confirm things are working as expected.
+You can use `yarn sls-logs -f sample-kms` to confirm things are working as expected.
 
 > Don't log the values you have decrypted.
 
