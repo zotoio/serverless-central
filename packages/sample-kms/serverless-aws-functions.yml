@@ -1,0 +1,12 @@
+functions:
+  sample-kms:
+    handler: src/index.handler
+
+    package:
+      include:
+        - src/**
+
+    events:
+      - http:
+          path: sample-kms/{id}
+          method: get

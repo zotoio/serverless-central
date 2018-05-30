@@ -6,14 +6,18 @@
     "private": true,
     "devDependencies": {
         "@types/aws-lambda": "^8.10.1",
+        "@types/bunyan": "^1.8.4",
         "@types/faker": "^4.1.1",
         "@types/jest": "^21.1.5",
         "@types/node": "^8.0.47",
         "aws-sdk": "^2.226.1",
+        "bunyan": "^1.8.12",
         "format-json": "^1.0.3",
+        "generator-mono-serverless": "^4.0.0",
         "jest": "^21.2.1",
         "lerna": "^2.4.0",
         "lodash": "^4.17.5",
+        "nsp": "^3.2.1",
         "prettier": "^1.12.1",
         "semantic-release": "^15.0.0",
         "serverless": "^1.26.1",
@@ -23,6 +27,7 @@
         "serverless-dotenv-plugin": "^1.1.2",
         "serverless-dynamodb-local": "^0.2.30",
         "serverless-google-cloudfunctions": "^1.1.1",
+        "serverless-kms-secrets": "^1.0.3",
         "serverless-localstack": "^0.2.3",
         "serverless-offline": "^3.20.3",
         "serverless-plugin-typescript": "^1.1.5",
@@ -47,5 +52,6 @@
     "workspaces": [
         "packages/*",
         "tools/*"
-    ]
+    ],
+    "dependencies": {}
 }

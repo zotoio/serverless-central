@@ -1,0 +1,9 @@
+iamRoleStatements:
+  # roles
+  - Effect: Allow
+    Action:
+      - dynamodb:UpdateItem
+      - dynamodb:Query
+      - dynamodb:PutItem
+    Resource:
+      Fn::GetAtt: [ samplekmsdb, Arn ]

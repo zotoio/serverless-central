@@ -1,0 +1,4 @@
+environment:
+  HERITAGE: generator-mono-serverless:package
+  # MY_VARIABLE: ${self:custom.kmsSecrets.secrets.MY_VARIABLE}
+  SLS_CRYPT_DB_PASS: ${self:custom.kmsSecrets.secrets.SLS_CRYPT_DB_PASS, env:SLS_CRYPT_DB_PASS}
