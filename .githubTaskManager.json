@@ -7,10 +7,10 @@
         "executor": "DockerServerless",
         "context": "Deploy to Lambda",
         "options": {
-            "env": [
-            "myvar=myval",
-            "var2=val2"
-          ]
+            "env": {
+              "myva": "myval",
+              "var2": "al2"
+            }
         }
       }   
      ]   
