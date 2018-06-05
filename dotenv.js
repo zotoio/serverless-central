@@ -5,11 +5,11 @@ const sharedConfig = dotenv.config({path: '../../.env'});
 const localConfig = dotenv.config();
 
 if (sharedConfig.error) {
-    throw sharedConfig.error
+    //throw sharedConfig.error
 }
 
 if (localConfig.error) {
-    throw localConfig.error
+    //throw localConfig.error
 }
 
 //console.log(json.plain(_.extend(sharedConfig.parsed, localConfig.parsed)));
