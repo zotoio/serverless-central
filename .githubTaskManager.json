@@ -1,0 +1,18 @@
+{
+  "push": {
+    "avtest": "123",
+    "agentGroup": "av",
+    "tasks": [
+      {        
+        "executor": "DockerServerless",
+        "context": "Deploy to Lambda",
+        "options": {
+            "env": [
+            "myvar=myval",
+            "var2=val2"
+          ]
+        }
+      }   
+     ]   
+  }  
+}
