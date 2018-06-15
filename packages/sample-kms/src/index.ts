@@ -29,7 +29,7 @@ const handler: Handler = async (event: any, context: Context, callback: Callback
 
     const docClient = await getDocClient();
     const test = await kmsUtils.decrypt(process.env.SLS_CRYPT_DB_PASS);
-    assert(test, 'test is populated');
+    assert(test, 'test decryption failed');
     log.info(`test kms value has been decrypted. Don't log it!`);
 
     const response: Response = {
