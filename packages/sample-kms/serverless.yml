@@ -21,7 +21,7 @@ provider:
 
   stackTags: ${file(./serverless-aws-tags.yml):stackTags}
 
-  role: ${env:SLS_AWS_EXECUTION_ROLE}
+  # role: ${env:SLS_AWS_EXECUTION_ROLE}
 
 package:
   individually: true
