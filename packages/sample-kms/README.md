@@ -1,7 +1,7 @@
 # sample-kms
 This aws function demonstrates use of the https://github.com/nordcloud/serverless-kms-secrets plugin to encrypt environment variables with a kms key, package the encrypted values, and decrypt them in lambda.
 
-Take note of aws kms account limits to ensure your use case is suitable.
+Take note of aws kms account limits to ensure your use case is suitable..
 
 ## prerequisites
 1. use a lambda execution role with access to the services you require.
