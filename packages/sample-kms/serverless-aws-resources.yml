@@ -3,7 +3,7 @@ resources:
     samplekmsdb:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: samplekmsdb
+        TableName: ${env:SLS_AWS_STAGE}-samplekmsdb
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
