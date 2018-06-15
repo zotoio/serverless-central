@@ -1,4 +1,0 @@
-environment:
-  HERITAGE: generator-mono-serverless:package
-  SLS_AWS_EXECUTION_ROLE: arn:aws:iam::347186442473:role/lambda-execution
-  SLS_CRYPT_DB_PASS: ${self:custom.kmsSecrets.secrets.SLS_CRYPT_DB_PASS, env:SLS_CRYPT_DB_PASS}

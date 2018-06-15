@@ -18,7 +18,7 @@ provider:
   stage: ${env:SLS_AWS_STAGE}
   region: ${env:SLS_AWS_REGION}
 
-  environment: ${file(./serverless-aws-environment-${self:provider.stage}.yml):environment, file(./serverless-aws-environment.yml):environment}
+  environment: ${file(./serverless-aws-environment-${self:provider.stage}.yml):environment}
 
   stackTags: ${file(./serverless-aws-tags.yml):stackTags}
 
