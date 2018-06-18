@@ -11,7 +11,7 @@ interface HelloResponse {
 const handler: Handler = (event: any, context: Context, callback: Callback) => {
     AWS.config.update({ region: process.env.SLS_AWS_REGION });
 
-    console.log('here5');
+    console.log('here');
 
     const response: HelloResponse = {
         statusCode: 200,

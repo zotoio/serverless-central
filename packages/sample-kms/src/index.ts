@@ -25,7 +25,7 @@ interface Response {
 
 const handler: Handler = async (event: any, context: Context, callback: Callback) => {
     const id = event.pathParameters.id;
-    log.info(`processing request for id: ${id}`);
+    log.info(`processing request for id: ${id}.`);
 
     const docClient = await getDocClient();
     const test = await kmsUtils.decrypt(process.env.SLS_CRYPT_DB_PASS);
