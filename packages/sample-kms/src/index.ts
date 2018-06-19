@@ -19,7 +19,7 @@ interface Response {
  *
  * @param event
  * @param {Context} context
- * @param {Callback} callback
+ * @param {Callback} callback.
  * @returns {Promise<void>}
  */
 
