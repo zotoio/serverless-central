@@ -3194,9 +3194,9 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
-generator-mono-serverless@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/generator-mono-serverless/-/generator-mono-serverless-4.0.0.tgz#b00049749527dfffa3bb7214438704a0b91b2300"
+generator-mono-serverless@^4.3.0:
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/generator-mono-serverless/-/generator-mono-serverless-4.3.0.tgz#e21b44fe9638a647d9202c67fdff0bc15d6b9640"
   dependencies:
     chalk "^2.1.0"
     yeoman-generator "^2.0.5"

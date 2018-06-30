@@ -1,0 +1,9 @@
+# function specific env vars override and extend shared .env
+SLS_AWS_STAGE=dev
+SLS_AWS_REGION=ap-southeast-2
+SLS_DYNAMODB_TABLENAME=mytablename
+SLS_AWS_KMS_KEY_ID=f7xxx9-20xf-4x98-bxx5-5xxxxccf8556
+SLS_AWS_EXECUTION_ROLE=arn:aws:iam::34xxxxxxxx73:role/lambda-execution
+SLS_AWS_API_AUTHORIZER=arn:aws:lambda:XXXX:function:my-authorizer
+SLS_AWS_S3_EVENT_BUCKET=myBucket
+SLS_AWS_S3_EVENT_TRIGGER=s3:ObjectCreated:*

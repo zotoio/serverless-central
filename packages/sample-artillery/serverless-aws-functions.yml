@@ -1,0 +1,12 @@
+functions:
+  sample-artillery:
+    handler: src/index.handler
+
+    package:
+      include:
+        - src/**
+
+    events:
+      - http:
+          path: sample-artillery
+          method: get

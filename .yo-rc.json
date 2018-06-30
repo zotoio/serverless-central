@@ -2,7 +2,8 @@
   "generator-mono-serverless": {
     "promptValues": {
       "executionAwsRole": "arn:aws:iam::347186442473:role/lambda-execution",
-      "kmsEncryptionKeyId": "f7caff09-20ff-4698-b6a5-5ebe3ccf8556"
+      "kmsEncryptionKeyId": "f7caff09-20ff-4698-b6a5-5ebe3ccf8556",
+      "apiGatewayAuthorizer": ""
     }
   }
 }

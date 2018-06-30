@@ -14,7 +14,7 @@
         "aws-sdk": "^2.226.1",
         "bunyan": "^1.8.12",
         "format-json": "^1.0.3",
-        "generator-mono-serverless": "^4.0.0",
+        "generator-mono-serverless": "^4.3.0",
         "jest": "^21.2.1",
         "lerna": "^2.4.0",
         "lodash": "^4.17.5",

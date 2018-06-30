@@ -1,0 +1,5 @@
+environment:
+  HERITAGE: generator-mono-serverless:package
+  SLS_AWS_KMS_KEY_ID: ${env:SLS_AWS_KMS_KEY_ID}
+  SLS_AWS_EXECUTION_ROLE: ${env:SLS_AWS_EXECUTION_ROLE}
+  # MY_VARIABLE: ${self:custom.kmsSecrets.secrets.MY_VARIABLE}
