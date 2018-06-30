@@ -1,2 +1,2 @@
 # sample-artillery
-This aws function is used for `<todo>`..
+This aws function is used to demonstrate automated performance testing with https:/artillery.io
