@@ -1,0 +1,13 @@
+# refer to https://artillery.io/docs/
+config:
+  target: 'https://xxxx.execute-api.ap-southeast-2.amazonaws.com'
+  phases:
+    - duration: 60
+      arrivalRate: 20
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: "/dev/sample-dynamo/1"

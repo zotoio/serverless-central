@@ -27,6 +27,10 @@
         "sls-dynamodb-start":
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb start --migrate",
         "sls-dynamodb-remove":
-            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb remove"
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless dynamodb remove",
+        "sls-perf":
+            "rimraf ../../output/artillery/${npm_package_name} && mkdir -p ../../output/artillery/${npm_package_name} && node ../../node_modules/artillery/bin/artillery run -o ../../output/artillery/${npm_package_name}/artillery-report.json artillery.yml",
+        "sls-perf-report":
+            "node ../../node_modules/artillery/bin/artillery report ../../output/artillery/${npm_package_name}/artillery-report.json -o ../../output/artillery/${npm_package_name}/artillery-report.html"
     }
 }

@@ -10,6 +10,7 @@
         "@types/faker": "^4.1.1",
         "@types/jest": "^21.1.5",
         "@types/node": "^8.0.47",
+        "artillery": "^1.6.0-21",
         "aws-sdk": "^2.226.1",
         "bunyan": "^1.8.12",
         "format-json": "^1.0.3",
