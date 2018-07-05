@@ -7,7 +7,7 @@
         "executor": "DockerServerless",
         "context": "Deploy to Lambda",
         "options": {
-            "image": "zotoio/gtm-worker:1.4.0",
+            "image": "zotoio/gtm-worker:1.4.1",
             "env": {
               "myva": "myval",
               "var2": "al2"
