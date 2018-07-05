@@ -6,7 +6,11 @@
 # - GTM CI worker nodes based on https://github.com/zotoio/gtm-worker automate this.
 #
 config:
-  target: 'https://41q462ktgb.execute-api.ap-southeast-2.amazonaws.com'
+  environments:
+    dev:
+      target: 'https://41q462ktgb.execute-api.ap-southeast-2.amazonaws.com'
+    test: 
+      target: 'https://zzzz.execute-api.ap-southeast-2.amazonaws.com'
   phases:
     - duration: 60
       arrivalRate: 20
@@ -16,4 +20,4 @@ config:
 scenarios:
   - flow:
     - get:
-        url: "/dev/sample-artillery"
+        url: "/{{ $environment }}/sample-artillery"
