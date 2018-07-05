@@ -23,6 +23,11 @@
         "sls-logs":
             "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless logs -v -t",
         "sls-info":
-            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless info"
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless info",
+        "sls-print":
+            "node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless print",
+        "sls-package":
+            "rimraf ../../output/packages/${npm_package_name} && mkdir -p ../../output/packages/${npm_package_name} && node --require ../../dotenv.js  ../../node_modules/serverless/bin/serverless package --package ../../output/packages/${npm_package_name} && tar -C ../../output/packages -cvzf ../../output/packages/${npm_package_name}-${npm_package_version}.tar.gz ${npm_package_name}"
+        
     }
 }
