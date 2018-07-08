@@ -6,6 +6,7 @@ plugins:
   - serverless-offline
   - serverless-domain-manager
   - serverless-aws-documentation
+  - serverless-aws-alias
 
 provider:
   name: aws
