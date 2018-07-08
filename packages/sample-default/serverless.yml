@@ -4,7 +4,7 @@ plugins:
   - serverless-plugin-typescript
   - serverless-webpack
   - serverless-offline
-  - serverless-domain-manager
+#  - serverless-domain-manager
   - serverless-aws-documentation
   - serverless-aws-alias
 
@@ -42,23 +42,23 @@ custom:
   webpack:
     webpackConfig: '../../../webpack.config.js'
 
-  domains:
-    prod: ${env:SLS_CUSTOM_DOMAIN}
-    sit: sit.${env:SLS_CUSTOM_DOMAIN}
-    dev: dev.${env:SLS_CUSTOM_DOMAIN}
-    local: ''
-
-  dnsEnabled:
-    prod: true
-    sit: true
-    dev: true
-    local: false
-
-  customDomain:
-    domainName: ${self:custom.domains.${self:provider.stage}}
-    certificateName: ${env:SLS_CUSTOM_DOMAIN}
-    basePath: ${self:service}
-    stage: ${self:provider.stage}
-    createRoute53Record: true
-    endpointType: regional
-    enabled: ${self:custom.dnsEnabled.${self:provider.stage}}
+#  domains:
+#    prod: ${env:SLS_CUSTOM_DOMAIN}
+#    sit: sit.${env:SLS_CUSTOM_DOMAIN}
+#    dev: dev.${env:SLS_CUSTOM_DOMAIN}
+#    local: ''
+#
+#  dnsEnabled:
+#    prod: true
+#    sit: true
+#    dev: true
+#    local: false
+#
+#  customDomain:
+#    domainName: ${self:custom.domains.${self:provider.stage}}
+#    certificateName: ${env:SLS_CUSTOM_DOMAIN}
+#    basePath: ${self:service}
+#    stage: ${self:provider.stage}
+#    createRoute53Record: true
+#    endpointType: regional
+#    enabled: ${self:custom.dnsEnabled.${self:provider.stage}}
