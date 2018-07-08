@@ -17,7 +17,6 @@ provider:
 
   environment:
       PLACE: "holder"
-      avtest: ${env:avtest}
 
   iamRoleStatements:
     - Effect: Allow
