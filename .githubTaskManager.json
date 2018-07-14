@@ -8,8 +8,7 @@
         "context": "Deploy to Lambda",
         "options": {
             "env": {
-              "myva": "myval",
-              "var2": "al2"
+              "SLS_VERBOSE": "true"
             }
         }
       }
