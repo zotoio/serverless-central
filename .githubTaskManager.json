@@ -1,13 +1,12 @@
 {
   "push": {
-    "avtest": "123",
+    "avtest": "123l4",
     "agentGroup": "av",
     "tasks": [
       {
         "executor": "DockerServerless",
         "context": "Deploy to Lambda",
         "options": {
-            "image": "zotoio/gtm-worker:1.6.5",
             "env": {
               "myva": "myval",
               "var2": "al2"
