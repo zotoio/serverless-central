@@ -1,0 +1,46 @@
+service: sample-http
+
+plugins:
+  - serverless-kms-secrets
+  - serverless-plugin-typescript
+  - serverless-webpack
+  - serverless-offline
+  - serverless-aws-documentation
+  - serverless-aws-alias
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 1024 # optional, in MB, default is 1024
+  timeout: 6 # optional, in seconds, default is 6
+
+  deploymentBucket:
+    name: ${env:SLS_DEPLOYMENT_S3_BUCKET_PREFIX}.serverless.${self:provider.stage}
+
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
+
+  environment: ${file(./serverless-aws-environment-${self:provider.stage}.yml):environment, file(./serverless-aws-environment.yml):environment}
+
+  stackTags: ${file(./serverless-aws-tags.yml):stackTags}
+
+  role: ${env:SLS_AWS_EXECUTION_ROLE}
+
+  endpointType: ${env:SLS_APIGW_ENDPOINT_TYPE}
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions: ${file(./serverless-aws-functions.yml):functions}
+
+resources: ${file(./serverless-aws-resources.yml):resources}
+
+custom:
+  webpack:
+    webpackConfig: '../../../webpack.config.js'
+
+  kmsSecrets: ${file(kms-secrets.${opt:stage, self:provider.stage}.${opt:region, self:provider.region}.yml)}
+
+

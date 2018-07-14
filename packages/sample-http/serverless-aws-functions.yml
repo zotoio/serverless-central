@@ -1,0 +1,14 @@
+functions:
+  sample-http:
+    handler: src/index.handler
+
+    onError: ${env:SLS_SNS_ERROR_TOPIC_ARN}
+
+    package:
+      include:
+        - src/**
+
+    events:
+      - http:
+          path: sample-http
+          method: get

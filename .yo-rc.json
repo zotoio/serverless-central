@@ -5,7 +5,8 @@
       "kmsEncryptionKeyId": "f7caff09-20ff-4698-b6a5-5ebe3ccf8556",
       "apiGatewayAuthorizer": "",
       "deploymentBucketPrefix": "io.zoto",
-      "snsErrorTopicArn": "arn:aws:sns:ap-southeast-2:347186442473:serverless-errors"
+      "snsErrorTopicArn": "arn:aws:sns:ap-southeast-2:347186442473:serverless-errors",
+      "useVpc": false
     }
   }
 }
