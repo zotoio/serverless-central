@@ -9,7 +9,7 @@
         "options": {
             "env": {
               "SLS_VERBOSE_OFF": "true",
-              "SLS_CONFIG_TYPE_": "ssm",
+              "SLS_CONFIG_TYPE": "ssm",
               "SLS_SPRING_CONFIG_ENDPOINT_OFF": "http://spring:8888"
             }
         }
