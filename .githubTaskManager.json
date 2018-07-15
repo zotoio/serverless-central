@@ -8,9 +8,9 @@
         "context": "Deploy to Lambda",
         "options": {
             "env": {
-              "SLS_VERBOSE": "true",
-              "SLS_CONFIG_TYPE": "spring",
-              "SLS_SPRING_CONFIG_ENDPOINT": "http://localhost:8888"
+              "SLS_VERBOSE_OFF": "true",
+              "SLS_CONFIG_TYPE_OFF": "spring",
+              "SLS_SPRING_CONFIG_ENDPOINT_OFF": "http://spring:8888"
             }
         }
       }
