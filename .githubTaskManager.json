@@ -9,7 +9,8 @@
         "options": {
             "env": {
               "SLS_VERBOSE": "true",
-              "SLS_CONFIG_TYPE": "spring"
+              "SLS_CONFIG_TYPE": "spring",
+              "SLS_SPRING_CONFIG_ENDPOINT": "http://localhost:8888"
             }
         }
       }
