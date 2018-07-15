@@ -8,7 +8,8 @@
         "context": "Deploy to Lambda",
         "options": {
             "env": {
-              "SLS_VERBOSE": "true"
+              "SLS_VERBOSE": "true",
+              "SLS_CONFIG_TYPE": "spring"
             }
         }
       }
