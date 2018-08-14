@@ -1,0 +1,34 @@
+functions:
+
+  graphql:
+    handler: src/handler.graphqlHandler
+    package:
+      include:
+        - src/**
+    events:
+    - http:
+        path: graphql
+        method: post
+        cors: true
+
+  playground:
+    handler: src/handler.playgroundHandler
+    package:
+      include:
+        - src/**
+    events:
+    - http:
+        path: playground
+        method: get
+        cors: true
+
+  graphiql:
+    handler: src/handler.graphiqlHandler
+    package:
+      include:
+        - src/**
+    events:
+    - http:
+        path: graphiql
+        method: get
+        cors: true

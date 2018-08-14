@@ -1,0 +1,19 @@
+// zoo.proto
+package zoo;
+syntax = "proto3";
+
+message Animals {
+    repeated Animal animals = 1;
+}
+
+message Animal {
+    string id = 1;
+    string name = 2;
+    repeated Location locations = 3;
+}
+
+message Location {
+    float longitude = 1;
+    float latitude = 2;
+    int32 timestamp = 3;
+}

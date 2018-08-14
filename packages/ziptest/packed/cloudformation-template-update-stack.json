@@ -1,0 +1,213 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ZiptestLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/ziptest-dev-ziptest"
+      }
+    },
+    "ZiptestLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "io.zoto.serverless.dev",
+          "S3Key": "serverless/ziptest/dev/1533441796595-2018-08-05T04:03:16.595Z/ziptest.zip"
+        },
+        "FunctionName": "ziptest-dev-ziptest",
+        "Handler": "src/index.handler",
+        "MemorySize": 1024,
+        "Role": "arn:aws:iam::347186442473:role/lambda-execution",
+        "Runtime": "nodejs8.10",
+        "Timeout": 6,
+        "DeadLetterConfig": {
+          "TargetArn": "arn:aws:sns:ap-southeast-2:347186442473:serverless-errors"
+        },
+        "Environment": {
+          "Variables": {
+            "HERITAGE": "generator-mono-serverless:package",
+            "SLS_AWS_STAGE": "dev",
+            "SLS_AWS_REGION": "ap-southeast-2",
+            "SLS_APIGW_ENDPOINT_TYPE": "EDGE",
+            "SLS_SNS_ERROR_TOPIC_ARN": "arn:aws:sns:ap-southeast-2:347186442473:serverless-errors",
+            "SLS_DEPLOYMENT_S3_BUCKET_PREFIX": "io.zoto",
+            "SLS_AWS_KMS_KEY_ID": "f7caff09-20ff-4698-b6a5-5ebe3ccf8556",
+            "SLS_AWS_EXECUTION_ROLE": "arn:aws:iam::347186442473:role/lambda-execution"
+          }
+        }
+      },
+      "DependsOn": [
+        "ZiptestLogGroup"
+      ]
+    },
+    "ZiptestLambdaVersionLhyYp6p7CazzJ8lSbAZOZsPrTxOrkbl2QTZ9G3hVXY": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "ZiptestLambdaFunction"
+        },
+        "CodeSha256": "jnm55kRGrzA8A6ey2NrhpG26OvrVq1cdn9kilRXThIg="
+      }
+    },
+    "ApiGatewayRestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "dev-ziptest",
+        "EndpointConfiguration": {
+          "Types": [
+            "EDGE"
+          ]
+        }
+      }
+    },
+    "ApiGatewayResourceZiptest": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "ApiGatewayRestApi",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "ziptest",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodZiptestGet": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceZiptest"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "ApiKeyRequired": false,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "ZiptestLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1533441796619": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "StageName": "dev"
+      },
+      "DependsOn": [
+        "ApiGatewayMethodZiptestGet"
+      ]
+    },
+    "ZiptestLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "ZiptestLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": {
+          "Fn::Join": [
+            "",
+            [
+              "apigateway.",
+              {
+                "Ref": "AWS::URLSuffix"
+              }
+            ]
+          ]
+        },
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": "io.zoto.serverless.dev"
+    },
+    "ZiptestLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "ZiptestLambdaVersionLhyYp6p7CazzJ8lSbAZOZsPrTxOrkbl2QTZ9G3hVXY"
+      }
+    },
+    "ServiceEndpoint": {
+      "Description": "URL of the service endpoint",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "ApiGatewayRestApi"
+            },
+            ".execute-api.ap-southeast-2.",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/dev"
+          ]
+        ]
+      }
+    }
+  }
+}

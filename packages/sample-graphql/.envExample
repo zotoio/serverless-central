@@ -1,0 +1,17 @@
+# function specific env vars override and extend shared .env
+SLS_AWS_STAGE=dev
+SLS_AWS_REGION=ap-southeast-2
+SLS_APIGW_ENDPOINT_TYPE=PRIVATE
+SLS_SNS_ERROR_TOPIC_ARN=arn:aws:sns:ap-southeast-2:XXXXXX:sns-topic
+SLS_DEPLOYMENT_S3_BUCKET_PREFIX=au.com.somedomain
+SLS_DYNAMODB_TABLENAME=mytablename
+SLS_AWS_KMS_KEY_ID=f7xxx9-20xf-4x98-bxx5-5xxxxccf8556
+SLS_AWS_EXECUTION_ROLE=arn:aws:iam::34xxxxxxxx73:role/lambda-execution
+SLS_AWS_API_AUTHORIZER=arn:aws:lambda:XXXX:function:my-authorizer
+SLS_AWS_S3_EVENT_BUCKET=myBucket
+SLS_AWS_S3_EVENT_TRIGGER=s3:ObjectCreated:*
+SLS_VPC_ID=vpc-194823094820389
+SLS_VPC_SECURITY_GROUP_ID=sg-089787d9f99
+SLS_VPC_SUBNET_A=subnet-aaaaa
+SLS_VPC_SUBNET_B=subnet-bbbbb
+SLS_VPC_SUBNET_C=subnet-ccccc
