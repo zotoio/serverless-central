@@ -1,3 +1,0 @@
-stackTags: # CF stack tags
-  GitURL: ${env:GIT_URL, 'not-supplied'}
-  GitCommit: ${env:GIT_COMMIT, 'not-supplied'}
