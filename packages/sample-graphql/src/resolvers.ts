@@ -31,18 +31,18 @@ const data = {
                 TableName: 'Tweets',
                 KeyConditionExpression: 'handle = :v1',
                 ExpressionAttributeValues: {
-                    ':v1': handle,
+                    ':v1': handle
                 },
                 IndexName: 'tweet-index',
                 Limit: args.limit,
-                ScanIndexForward: false,
+                ScanIndexForward: false
             };
 
             if (args.nextToken) {
                 params.ExclusiveStartKey = {
                     tweet_id: args.nextToken.tweet_id,
                     created_at: args.nextToken.created_at,
-                    handle: handle,
+                    handle
                 };
             }
 
@@ -55,11 +55,11 @@ const data = {
 
             if (result.Items.length >= 1) {
                 listOfTweets = {
-                    items: [],
+                    items: []
                 };
             }
 
-            for (let i = 0; i < result.Items.length; i += 1) {
+            for (const i of result.Items) {
                 tweets.push({
                     tweet_id: result.Items[i].tweet_id,
                     created_at: result.Items[i].created_at,
@@ -67,7 +67,7 @@ const data = {
                     tweet: result.Items[i].tweet,
                     retweet_count: result.Items[i].retweet_count,
                     retweeted: result.Items[i].retweeted,
-                    favorited: result.Items[i].favorited,
+                    favorited: result.Items[i].favorited
                 });
             }
 
@@ -77,7 +77,7 @@ const data = {
                 listOfTweets.nextToken = {
                     tweet_id: result.LastEvaluatedKey.tweet_id,
                     created_at: result.LastEvaluatedKey.created_at,
-                    handle: result.LastEvaluatedKey.handle,
+                    handle: result.LastEvaluatedKey.handle
                 };
             }
 
@@ -91,8 +91,8 @@ const data = {
                     TableName: 'Users',
                     KeyConditionExpression: 'handle = :v1',
                     ExpressionAttributeValues: {
-                        ':v1': args.handle,
-                    },
+                        ':v1': args.handle
+                    }
                 },
                 callback
             )
@@ -108,20 +108,20 @@ const data = {
                     followers_count: result.Items[0].followers_count,
                     friends_count: result.Items[0].friends_count,
                     favourites_count: result.Items[0].favourites_count,
-                    following: result.Items[0].following,
+                    following: result.Items[0].following
                 };
             }
 
             return listOfTweets;
         });
-    },
+    }
 };
 // eslint-disable-next-line import/prefer-default-export
 export const resolvers = {
     Query: {
-        getUserInfo: (root, args) => data.getUserInfo(args),
+        getUserInfo: (root, args) => data.getUserInfo(args)
     },
     User: {
-        tweets: (obj, args) => data.getPaginatedTweets(obj.handle, args),
-    },
+        tweets: (obj, args) => data.getPaginatedTweets(obj.handle, args)
+    }
 };

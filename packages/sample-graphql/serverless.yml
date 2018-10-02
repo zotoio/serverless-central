@@ -7,6 +7,7 @@ plugins:
   - serverless-dynamodb-local
   - serverless-offline
   - serverless-aws-documentation
+  - serverless-domain-manager
 
 provider:
   name: aws
@@ -53,3 +54,11 @@ custom:
           - table: ${env:SLS_DYNAMODB_TABLENAME}
             sources: [./samplegraphql.seed.json]
 
+  customDomain:
+    domainName: faas.net.au
+    certificateName: faas.net.au
+    basePath: gql
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: regional
+    enabled: true

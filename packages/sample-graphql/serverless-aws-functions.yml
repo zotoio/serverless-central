@@ -22,13 +22,3 @@ functions:
         method: get
         cors: true
 
-  graphiql:
-    handler: src/handler.graphiqlHandler
-    package:
-      include:
-        - src/**
-    events:
-    - http:
-        path: graphiql
-        method: get
-        cors: true
