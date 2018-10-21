@@ -1,0 +1,10 @@
+functions:
+  sample-java:
+    handler: com.serverless.Handler
+
+    onError: ${env:SLS_SNS_ERROR_TOPIC_ARN}
+
+    events:
+      - http:
+          path: account-balance/{accountId}
+          method: get

@@ -1,0 +1,14 @@
+functions:
+  sample-typescript:
+    handler: src/index.handler
+
+    onError: ${env:SLS_SNS_ERROR_TOPIC_ARN}
+
+    package:
+      include:
+        - src/**
+
+    events:
+      - http:
+          path: account-balance/{id}
+          method: get

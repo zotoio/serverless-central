@@ -1,0 +1,77 @@
+service: sample-typescript
+
+plugins:
+  - serverless-kms-secrets
+  - serverless-plugin-typescript
+  - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline
+  - serverless-aws-documentation
+  - serverless-aws-alias
+  - serverless-domain-manager
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  memorySize: 1024 # optional, in MB, default is 1024
+  timeout: 6 # optional, in seconds, default is 6
+
+  deploymentBucket:
+    name: ${env:SLS_DEPLOYMENT_S3_BUCKET_PREFIX}.serverless.${self:provider.stage}
+
+  stage: ${env:SLS_AWS_STAGE}
+  region: ${env:SLS_AWS_REGION}
+
+  environment: ${file(./serverless-aws-environment-${self:provider.stage}.yml):environment, file(./serverless-aws-environment.yml):environment}
+
+  stackTags: ${file(./serverless-aws-tags.yml):stackTags}
+
+  role: ${env:SLS_AWS_EXECUTION_ROLE}
+
+  endpointType: ${env:SLS_APIGW_ENDPOINT_TYPE}
+
+package:
+  individually: true
+  exclude:
+    - ".*/**"
+
+functions: ${file(./serverless-aws-functions.yml):functions}
+
+resources: ${file(./serverless-aws-resources.yml):resources}
+
+custom:
+  webpack:
+    webpackConfig: '../../../webpack.config.js'
+
+  kmsSecrets: ${file(kms-secrets.${opt:stage, self:provider.stage}.${opt:region, self:provider.region}.yml)}
+
+  dynamodb:
+    start:
+      seed: true
+
+    seed:
+      testdata:
+        sources:
+          - table: ${env:SLS_DYNAMODB_TABLENAME}
+            sources: [./sampletypescript.seed.json]
+
+  domains:
+    prod: ${env:SLS_CUSTOM_DOMAIN}
+    sit: sit.${env:SLS_CUSTOM_DOMAIN}
+    dev: dev.${env:SLS_CUSTOM_DOMAIN}
+    local: ''
+
+  dnsEnabled:
+    prod: true
+    sit: true
+    dev: true
+    local: false
+
+  customDomain:
+    domainName: ${self:custom.domains.${self:provider.stage}}
+    certificateName: ${env:SLS_CUSTOM_DOMAIN}
+    basePath: ${self:service}
+    stage: ${self:provider.stage}
+    createRoute53Record: true
+    endpointType: regional
+    enabled: ${self:custom.dnsEnabled.${self:provider.stage}}
