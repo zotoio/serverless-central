@@ -65,5 +65,9 @@
         "packages/*",
         "tools/*"
     ],
-    "dependencies": {}
+    "dependencies": {},
+    "resolutions": {
+        "handlebars": "^4.7.10",
+        "proxy-addr": "^2.0.8"
+    }
 }
